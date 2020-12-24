@@ -1,0 +1,31 @@
+﻿@model ApplicationUser
+@{
+    ViewData["Title"] = "My Sources";
+}
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h4 style="margin: 0;">My sources</h4>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="Source" asp-action="CreateSource">New Source</a>
+</div>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Description</th>
+            <th scope="col">Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ApplicationSource s in Model.Sources)
+        {
+        <tr>
+            <td scope="row">@s.Id</td>
+            <td>@s.Name</td>
+            <td>@s.Capacity</td>
+            <td>@s.Description</td>
+            <td><a class="text-primary mr-3" asp-controller="Source" asp-action="EditSource" asp-route-id="@s.Id">Edit</a><a class="text-danger" asp-controller="Source" asp-action="DeleteSource" asp-route-id="@s.Id">Delete</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
